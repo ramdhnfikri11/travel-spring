@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello</title>
+    <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/f88b54f2e6.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <a th:href="@{region/form}">CREATE</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="region : ${regions}">
+                <td th:text="${region.region_id}" />
+                <td th:text="${region.name}" />
+                <td>
+                    <span>
+                    <form th:action="@{/region/delete/{id} (id = ${region.region_id})}" method="post">
+                        <input type="submit" value="delete" class="btn btn-danger">
+                    </form></span> |
+                <span><a th:href="@{region/form/{id} (id=${region.region_id})}" class>Edit</a></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+</body>
+</html>

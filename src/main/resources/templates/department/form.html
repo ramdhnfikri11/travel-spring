@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <form th:action="@{/department/save}" method="post" th:object="${department}">
+      <input type="text" readonly th:field="*{department_id}" id="id">
+    <label for="name">department Name : </label>
+    <input type="text" th:field="*{name}" id="name">
+    <select name="region_id" id="region_id">
+        <option th:each="region: ${region}" th:value="*{region.region_id}" th:text="*{region.name}" />
+    </select>
+    <input type="submit" value="Save Category">
+  </form>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department</title>
+</head>
+<body>
+    <h1>Department</h1>
+    <a th:href="@{department/form}">CREATE</a>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Region</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="department : ${departments}">
+                <td th:text="${department.department_id}" />
+                <td th:text="${department.name}" />
+                <td th:text="${department.region_id.name}" />
+                <td>
+                    <span>
+                    <form th:action="@{/department/delete/{id} (id = ${department.department_id})}" method="post">
+                        <input type="submit" value="delete" class="btn btn-danger">
+                    </form></span> |
+                <span><a th:href="@{department/form/{id} (id=${department.department_id})}" class>Edit</a></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

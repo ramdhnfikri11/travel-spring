@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee</title>
+</head>
+<body>
+    <h1>Employee</h1>
+    <a th:href="@{/employee/form}">CREATE</a>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.employee_id}" />
+                <td th:text="${employee.name}" />
+                <td th:text="${employee.address}" />
+                <td th:text="${employee.phone_number}" />
+                <td th:text="${employee.email}" />
+                <td>
+                    <span>
+                    <form th:action="@{/employee/delete/{id} (id = ${employee.employee_id})}" method="post">
+                        <input type="submit" value="delete" class="btn btn-danger">
+                    </form></span> |
+                <span><a th:href="@{employee/form/{id} (id=${employee.employee_id})}" class>Edit</a></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
