@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entities.Employee;
@@ -33,28 +34,20 @@ public class EmployeeController {
     }
 
 
-    // @PostMapping("save")
-    // public String submit(Region region){
-    //     Boolean result= regionService.Save(region);
-    //     if (result) {
-    //         return "redirect:/region";
-    //     } else{
-    //         return "region:/form";
-    //     }
-    // }
-    // save
-    // region/save
-    // @PostMapping("save")
-    // public String regionSave(Region region) {
-    //     regionService.Save(region);
-    //     return "redirect:/region";
-    // }
+    @PostMapping("save")
+    public String submit(Employee employee){
+        Boolean result= employeeService.Save(employee);
+        if (result) {
+            return "redirect:/employee";
+        } else{
+            return "employee:/form";
+        }
+    }
 
-    // delete
-    // region/delete/1
-    // @PostMapping("delete/{id}")
-    // public String regionDelete(@PathVariable(required =true) Integer id){
-    //     regionService.Delete(id);
-    //     return "redirect:/region";
-    // }
+
+    @PostMapping("delete/{id}")
+    public String delete(@PathVariable(required =true) Integer id){
+        employeeService.Delete(id);
+        return "redirect:/employee";
+    }
 }

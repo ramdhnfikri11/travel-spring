@@ -17,8 +17,6 @@ public class Role {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "level")
-    private Integer level;
 
     @OneToMany(mappedBy="role")
     @JsonIgnore
@@ -40,12 +38,5 @@ public class Role {
         this.name = name;
     }
 
-    public Integer getLevel() {
-        return level;
-    }
-
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
 
 }

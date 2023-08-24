@@ -18,11 +18,14 @@ public class AccountServiceImpl implements AccountService{
     @Autowired
     private EmployeeService employeeService;
     @Autowired
+    private RoleService roleService;
+    @Autowired
     private PasswordEncoder passwordEncoder;
     
     @Override
     public Boolean register(RegisterRequest registerRequest) {
         Employee employee =new Employee();
+
         employee.setEmail(registerRequest.getEmail());
         employee.setName(registerRequest.getName());
         employee.setPhone_number(null);
@@ -30,12 +33,15 @@ public class AccountServiceImpl implements AccountService{
         // insert to employee
         Boolean resultEmployee= employeeService.Save(employee);
         if (resultEmployee) {
+            //tampung role yang di tentukan
+            Role role=new Role();
+            role.setRole_id(1);
             // insert to user
             Integer employee_id = employeeService.findIdByEmail(registerRequest.getEmail());
             User user = new User();
+            
+            
             user.setUser_id(employee_id);
-            Role role=new Role();
-            role.setRole_id(1);
             user.setRole(role);
             user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
 

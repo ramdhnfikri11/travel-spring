@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Travel</title>
+</head>
+<body>
+    <h1>Post Travel</h1>
+    <a th:href="@{posttravel/form}">CREATE</a>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>id travel</th>
+                <th>Departure</th>
+                <th>Duration</th>
+                <th>Return</th>
+                <th>Destination</th>
+                <th>Transportation</th>
+                <th>Remarks</th>
+                <th>Status Manager</th>
+                <th>Status HR</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="posttravel : ${posttravels}">
+                <td th:text="${posttravel.posttravel_id}" >
+                <td th:text="${posttravel.travel.travel_id}" >
+                <td th:text="${posttravel.departure}" >
+                <td th:text="${posttravel.duration}" >
+                <td th:text="${posttravel.go_back}" >
+                <td th:text="${posttravel.destination}" >
+                <td th:text="${posttravel.transportation}" >
+                <td th:text="${posttravel.remarks}" >
+                <td th:text="${posttravel.status_manager}" >
+                <td th:text="${posttravel.status_hr}" >
+                <td>
+                    <span>
+                    <form th:action="@{/posttravel/delete/{id} (id = ${posttravel.posttravel_id})}" method="post">
+                        <input type="submit" value="delete" class="btn btn-danger">
+                    </form></span> |
+                <span><a th:href="@{posttravel/form/{id} (id=${posttravel.posttravel_id})}" class>Edit</a></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

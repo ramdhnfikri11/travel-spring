@@ -1,7 +1,6 @@
 package com.example.demo.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,7 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@ComponentScan
 public class AppSecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
@@ -27,8 +25,11 @@ public class AppSecurityConfig {
             try {
                 auth
                     .antMatchers("/api/user/**").permitAll()
-                    .antMatchers("/api/employee/**").permitAll()
+                    .antMatchers("/user/**").permitAll()
+                    // .antMatchers("/api/employee/**").permitAll()
+                    .antMatchers("/travel/**").permitAll()
                     .antMatchers("/employee/**").permitAll()
+                    .antMatchers("/posttravel/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .formLogin()

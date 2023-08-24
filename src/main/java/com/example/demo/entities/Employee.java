@@ -1,29 +1,26 @@
 package com.example.demo.entities;
 
 
+import java.util.List;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tb_m_employee")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="employee_id")
     private Integer employee_id;
-    @Column(name ="name")
     private String name;
-    @Column(name ="address")
     private String address;
-    @Column(name="phone_number")
     private String phone_number;
-    @Column(name="email")
     private String email;
 
-
-
-
-
-
+    @OneToMany(mappedBy="employee") 
+    @JsonIgnore
+    private List<Travel>travels;
 
     
     public Integer getEmployee_id() {
@@ -57,4 +54,5 @@ public class Employee {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

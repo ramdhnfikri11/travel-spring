@@ -17,6 +17,8 @@ public class User {
     @JoinColumn(name="user_id")
     private Employee employee;
 
+    
+
     public Integer getUser_id() {
         return user_id;
     }

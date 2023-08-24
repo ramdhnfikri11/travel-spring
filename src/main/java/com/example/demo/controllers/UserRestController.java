@@ -25,6 +25,7 @@ public class UserRestController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private AccountService accountService;
+
     @PostMapping("user/login")
     public ResponseEntity<Object> login( @RequestBody Login loginValue){
         Authentication authentication = authenticationManager
@@ -37,6 +38,7 @@ public class UserRestController {
         return Response.generateResponse(HttpStatus.UNAUTHORIZED, "Login Gagal");
         
     }
+    
     @PostMapping("user/register")
     public ResponseEntity<Object> register(@RequestBody RegisterRequest registerRequest){
         Boolean result = accountService.register(registerRequest);
