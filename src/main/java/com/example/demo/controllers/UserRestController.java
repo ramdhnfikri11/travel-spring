@@ -7,6 +7,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import com.example.demo.dto.Login;
 import com.example.demo.dto.RegisterRequest;
 import com.example.demo.handler.Response;
 import com.example.demo.services.AccountService;
+import com.example.demo.services.UserService;
 
 @RestController
 @RequestMapping("api")
@@ -25,6 +28,19 @@ public class UserRestController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private UserService userService;
+
+
+    @GetMapping("user")
+    public ResponseEntity<Object> get(){
+        return Response.generateResponse( HttpStatus.OK, "All Datas Retrieved", userService.Get());
+    }
+
+    @GetMapping("user/{id}")
+    public ResponseEntity<Object> get(@PathVariable(required = true) Integer id) {
+        return Response.generateResponse(HttpStatus.OK, "Data Retrieved",   userService.Get(id));
+    }
 
     @PostMapping("user/login")
     public ResponseEntity<Object> login( @RequestBody Login loginValue){
@@ -47,6 +63,7 @@ public class UserRestController {
         }
         return Response.generateResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Data Gagal disimpan");
     }
+    
     @PostMapping("user/forgot")
     public ResponseEntity<Object> forgotPassword(@RequestBody Login login){
         Boolean result = accountService.forgotPassword(login);

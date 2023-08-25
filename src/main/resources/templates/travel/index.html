@@ -6,13 +6,13 @@
     <title>Post Travel</title>
 </head>
 <body>
-    <h1>Post Travel</h1>
+    <h1>Travel</h1>
     <a th:href="@{travel/form}">CREATE</a>
     <table>
         <thead>
             <tr>
                 <th>id</th>
-                <th>id travel</th>
+                <th>employe name</th>
                 <th>Departure</th>
                 <th>Duration</th>
                 <th>Return</th>
@@ -42,6 +42,7 @@
                         <input type="submit" value="delete" class="btn btn-danger">
                     </form></span> |
                 <span><a th:href="@{travel/form/{id} (id=${travel.travel_id})}" class>Edit</a></span>
+                <span><a th:href="@{posttravel/form/{id} (id=${travel.travel_id})}" class>Report</a></span>
                 </td>
             </tr>
         </tbody>

@@ -22,28 +22,38 @@ public class Employee {
     @JsonIgnore
     private List<Travel>travels;
 
-    
+    @OneToMany(mappedBy="employee") 
+    @JsonIgnore
+    private List<Posttravel>posttravels;
+
     public Integer getEmployee_id() {
         return employee_id;
     }
+
     public void setEmployee_id(Integer employee_id) {
         this.employee_id = employee_id;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getAddress() {
         return address;
     }
+
     public void setAddress(String address) {
         this.address = address;
     }
+
     public String getPhone_number() {
         return phone_number;
     }
+
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
@@ -51,8 +61,28 @@ public class Employee {
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<Travel> getTravels() {
+        return travels;
+    }
+
+    public void setTravels(List<Travel> travels) {
+        this.travels = travels;
+    }
+
+    public List<Posttravel> getPosttravels() {
+        return posttravels;
+    }
+
+    public void setPosttravels(List<Posttravel> posttravels) {
+        this.posttravels = posttravels;
+    }
+
+    
+
 
 }

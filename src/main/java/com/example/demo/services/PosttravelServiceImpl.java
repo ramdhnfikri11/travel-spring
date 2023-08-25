@@ -12,7 +12,7 @@ import com.example.demo.repositories.PosttravelRepository;
 @Service
 public class PosttravelServiceImpl implements PosttravelService{
     @Autowired
-    PosttravelRepository posttravelRepository;
+    private PosttravelRepository posttravelRepository;
 
     @Override
     public List<Posttravel> Get() {
@@ -29,7 +29,7 @@ public class PosttravelServiceImpl implements PosttravelService{
         posttravelRepository.save(model);
         return posttravelRepository.findById(model.getPosttravel_id()).isPresent();
     }
-    
+
     @Override
     public Boolean Delete(Integer id) {
         posttravelRepository.deleteById(id);

@@ -12,7 +12,6 @@
         <thead>
             <tr>
                 <th>id</th>
-                <th>id travel</th>
                 <th>Departure</th>
                 <th>Duration</th>
                 <th>Return</th>
@@ -27,7 +26,6 @@
         <tbody>
             <tr th:each="posttravel : ${posttravels}">
                 <td th:text="${posttravel.posttravel_id}" >
-                <td th:text="${posttravel.travel.travel_id}" >
                 <td th:text="${posttravel.departure}" >
                 <td th:text="${posttravel.duration}" >
                 <td th:text="${posttravel.go_back}" >

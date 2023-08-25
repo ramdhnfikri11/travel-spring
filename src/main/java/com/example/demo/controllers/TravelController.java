@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.entities.Posttravel;
 import com.example.demo.entities.Travel;
 import com.example.demo.services.EmployeeService;
+import com.example.demo.services.PosttravelService;
 import com.example.demo.services.TravelService;
 
 @Controller
@@ -21,6 +22,11 @@ public class TravelController {
 
     @Autowired
     EmployeeService employeeService;
+
+    @Autowired
+    PosttravelService posttravelService;
+
+
 
     @GetMapping
     public String index(Model model) {
@@ -40,6 +46,8 @@ public class TravelController {
         return "travel/form";
     }
 
+
+
     @PostMapping("save")
     public String submit(Travel travel){
         Boolean result = travelService.Save(travel);
@@ -49,6 +57,7 @@ public class TravelController {
             return "travel/form";
         }
     }
+
 
     @PostMapping("delete/{id}")
     public String delete(Travel travel, @PathVariable(required = true)Integer id){

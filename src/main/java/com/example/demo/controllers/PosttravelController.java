@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entities.Posttravel;
+import com.example.demo.services.EmployeeService;
 import com.example.demo.services.PosttravelService;
 import com.example.demo.services.TravelService;
 
@@ -16,10 +17,13 @@ import com.example.demo.services.TravelService;
 @RequestMapping("posttravel")
 public class PosttravelController {
     @Autowired
-    PosttravelService posttravelService;
+    private PosttravelService posttravelService;
 
     @Autowired
-    TravelService travelService;
+    private TravelService travelService;
+
+    @Autowired
+    private EmployeeService employeeService;
 
     
     @GetMapping
@@ -31,10 +35,9 @@ public class PosttravelController {
     @GetMapping(value = {"form", "form/{id}"})
     public String form(Model model, @PathVariable(required = false)Integer id){
         if(id != null ){
-            model.addAttribute("travels", travelService.Get());
-            model.addAttribute("posttravel", posttravelService.Get(id));
+            model.addAttribute("employees", employeeService.Get());
+            model.addAttribute("posttravel", travelService.Get(id));
         }else{
-            model.addAttribute("travels", travelService.Get());
             model.addAttribute("posttravel", new Posttravel());
         }
         return "posttravel/form";

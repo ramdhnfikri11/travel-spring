@@ -26,10 +26,10 @@ public class AppSecurityConfig {
                 auth
                     .antMatchers("/api/user/**").permitAll()
                     .antMatchers("/user/**").permitAll()
-                    // .antMatchers("/api/employee/**").permitAll()
+                    .antMatchers("/api/travel/**").permitAll()
                     .antMatchers("/travel/**").permitAll()
-                    .antMatchers("/employee/**").permitAll()
                     .antMatchers("/posttravel/**").permitAll()
+                    .antMatchers("/api/posttravel/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .formLogin()

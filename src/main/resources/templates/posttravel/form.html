@@ -6,43 +6,42 @@
 </head>
 <body>
   <form th:action="@{/posttravel/save}" method="post" th:object="${posttravel}">
-      <input type="text" readonly th:field="*{posttravel_id}" id="id" placeholder="id">
+    <input type="text" readonly th:field="*{travel_id}" id="posttravel_id" placeholder="id">
+    <label > Pick Employee Name : </label>
+    <select th:field="*{employee}" disabled>
+      <option th:each="employee: ${employees}" th:value="${employee.employee_id}" th:text="${employee.name}"></option>
+    </select>
 
-      <label > Pick travel destination : </label>
-      <select th:field="*{travel}">
-        <option th:each="travel: ${travels}" th:value="${travel.travel_id}" th:text="${travel.destination}"></option>
-      </select>
+    <label for="departure"> Departure : </label>
+    <input type="datetime-local" th:field="*{departure}" id="departure">
 
-      <label for="departure"> Departure : </label>
-      <input type="datetime-local" th:field="*{departure}" id="departure">
+    <label for="duration"> Duration</label>
+    <input type="text" th:field="*{duration}" id="duration">
 
-      <label for="duration"> Duration</label>
-      <input type="text" th:field="*{duration}" id="duration">
+    <label for="go_back"> Return : </label>
+    <input type="datetime-local" th:field="*{go_back}" id="go_back">
 
-      <label for="go_back"> Return : </label>
-      <input type="datetime-local" th:field="*{go_back}" id="go_back">
+    <label for="destination"> Destination</label>
+    <input type="text" th:field="*{destination}" id="destination">
 
-      <label for="destination"> Destination</label>
-      <input type="text" th:field="*{destination}" id="destination">
+    <label for="transportation"> Transportation</label>
+    <input type="text" th:field="*{transportation}" id="transportation">
 
-      <label for="transportation"> Transportation</label>
-      <input type="text" th:field="*{transportation}" id="transportation">
+    <label for="remarks"> Remarks</label>
+    <input type="text" th:field="*{remarks}" id="remarks">
 
-      <label for="remarks"> Remarks</label>
-      <input type="text" th:field="*{remarks}" id="remarks">
+    <select th:field="*{status_manager}" name="status_manager" disabled>
+      <option value="pending" selected>pending</option>
+      <option value="accepted">accepted</option>
+      <option value="rejected">rejected</option>
+    </select>
 
-      <select th:field="*{status_manager}" name="status_manager">
-        <option value="pending" selected>pending</option>
-        <option value="accepted">accepted</option>
-        <option value="rejected">rejected</option>
-      </select>
-
-      <select th:field="*{status_hr}" name="status_manager">
-        <option value="pending" selected>pending</option>
-        <option value="accepted">accepted</option>
-        <option value="rejected">rejected</option>
-      </select>
-    <input type="submit" value="Save Category">
+    <select th:field="*{status_hr}" name="status_manager" disabled>
+      <option value="pending" selected>pending</option>
+      <option value="accepted">accepted</option>
+      <option value="rejected">rejected</option>
+    </select>
+  <input type="submit" value="Save Category">
   </form>
 </body>
 </html>

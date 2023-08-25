@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -44,8 +44,7 @@ public class Travel {
     private String status_manager;
     private String status_hr;
 
-    @OneToMany(mappedBy="travel") 
-    private List<Posttravel> posttravels;
+
 
     public Integer getTravel_id() {
         return travel_id;
@@ -127,11 +126,9 @@ public class Travel {
         this.status_hr = status_hr;
     }
 
-    public List<Posttravel> getPosttravels() {
-        return posttravels;
-    }
 
-    public void setPosttravels(List<Posttravel> posttravels) {
-        this.posttravels = posttravels;
-    }
+
+    
+
+    
 }
