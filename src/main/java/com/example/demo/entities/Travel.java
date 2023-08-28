@@ -30,12 +30,12 @@ public class Travel {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
     private Date departure;
 
     private Integer duration;
     
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
     private Date go_back;
 
     private String destination;

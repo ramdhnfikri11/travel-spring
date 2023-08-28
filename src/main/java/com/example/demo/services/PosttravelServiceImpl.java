@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entities.Posttravel;
 import com.example.demo.repositories.PosttravelRepository;
 
+
 @Service
 public class PosttravelServiceImpl implements PosttravelService{
     @Autowired
     private PosttravelRepository posttravelRepository;
+
 
     @Override
     public List<Posttravel> Get() {
