@@ -30,6 +30,7 @@ public class AppSecurityConfig {
                     .antMatchers("/travel/**").permitAll()
                     .antMatchers("/posttravel/**").permitAll()
                     .antMatchers("/api/posttravel/**").permitAll()
+                    .antMatchers("/api/employee/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .formLogin()

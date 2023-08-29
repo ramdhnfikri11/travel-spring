@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-// import com.example.demo.dto.AskRequest;
 import com.example.demo.entities.Travel;
 import com.example.demo.handler.Response;
-// import com.example.demo.services.RequestService;
 import com.example.demo.services.TravelService;
 
 @RestController
@@ -25,9 +23,6 @@ public class TravelRestController {
 
     @Autowired
     private TravelService travelService;
-
-    // @Autowired
-    // private RequestService requestService;
 
     @GetMapping("travel")
     public ResponseEntity<Object> get(){
@@ -45,15 +40,6 @@ public class TravelRestController {
         travelService.Save(travel);
         return Response.generateResponse(HttpStatus.OK,"Data has been saved");
     }
-
-    // @PostMapping("travel/ask")
-    // public ResponseEntity<Object> ask(@RequestBody AskRequest askRequest){
-    //     Boolean result = requestService.ask(askRequest);
-    //     if (result) {
-    //         return Response.generateResponse(HttpStatus.OK, "Data Berhasil disimpan");
-    //     }
-    //     return Response.generateResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Data Gagal disimpan");
-    // }
 
     @DeleteMapping("travel/{id}")
     public ResponseEntity<Object> put(@PathVariable(required = true) Integer id) {
