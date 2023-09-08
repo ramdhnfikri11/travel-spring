@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.ChangePasswordRequest;
 import com.example.demo.dto.Login;
 import com.example.demo.dto.RegisterRequest;
+import com.example.demo.entities.User;
 import com.example.demo.handler.Response;
 import com.example.demo.services.AccountService;
+import com.example.demo.services.EmployeeService;
 import com.example.demo.services.UserService;
 
 @RestController
@@ -32,6 +34,9 @@ public class UserRestController {
     private AccountService accountService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private EmployeeService employeeService;
+
 
 
     @GetMapping("user")
@@ -44,6 +49,18 @@ public class UserRestController {
         return Response.generateResponse(HttpStatus.OK, "Data Retrieved",   userService.Get(id));
     }
 
+    // @PostMapping("user/login")
+    // public ResponseEntity<Object> login( @RequestBody Login loginValue){
+    //     Authentication authentication = authenticationManager
+    //         .authenticate(new UsernamePasswordAuthenticationToken(
+    //             loginValue.getEmail(), loginValue.getPassword()));
+    //     SecurityContextHolder.getContext().setAuthentication(authentication);
+    //     if (authentication.isAuthenticated()) {
+    //         return Response.generateResponse(HttpStatus.OK, "Login Successful");
+    //     }
+    //     return Response.generateResponse(HttpStatus.OK, "Login Gagal");
+        
+    // }
     @PostMapping("user/login")
     public ResponseEntity<Object> login( @RequestBody Login loginValue){
         Authentication authentication = authenticationManager
@@ -51,9 +68,14 @@ public class UserRestController {
                 loginValue.getEmail(), loginValue.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         if (authentication.isAuthenticated()) {
-            return Response.generateResponse(HttpStatus.OK, "Login Successful");
+            Integer employee_id = employeeService.findIdByEmail(loginValue.getEmail());
+            User user = new User();
+
+            user.setUser_id(employee_id);
+
+            return Response.generateResponse(HttpStatus.OK, "Login Successful", userService.Get(employee_id));
         }
-        return Response.generateResponse(HttpStatus.UNAUTHORIZED, "Login Gagal");
+        return Response.generateResponse(HttpStatus.OK, "Login Gagal");
         
     }
     

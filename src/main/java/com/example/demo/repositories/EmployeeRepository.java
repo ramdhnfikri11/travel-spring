@@ -9,4 +9,6 @@ import com.example.demo.entities.Employee;
 public interface EmployeeRepository extends JpaRepository<Employee,Integer>{
     @Query(value = "select e.employee_id from tb_m_employee e where e.email = ?1", nativeQuery = true)
     public Integer findIdByEmail(String email);
+    
+    public String existsByEmail(String email);
 }

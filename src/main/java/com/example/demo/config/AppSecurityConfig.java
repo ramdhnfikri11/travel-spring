@@ -24,13 +24,7 @@ public class AppSecurityConfig {
         .authorizeHttpRequests((auth) -> {
             try {
                 auth
-                    .antMatchers("/api/user/**").permitAll()
-                    .antMatchers("/user/**").permitAll()
-                    .antMatchers("/api/travel/**").permitAll()
-                    .antMatchers("/travel/**").permitAll()
-                    .antMatchers("/posttravel/**").permitAll()
-                    .antMatchers("/api/posttravel/**").permitAll()
-                    .antMatchers("/api/employee/**").permitAll()
+                    .antMatchers("/api/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .formLogin()
@@ -45,6 +39,23 @@ public class AppSecurityConfig {
         });
         return http.build();
     }
+
+    // @Override
+// protected void configure(HttpSecurity http) throws Exception {
+//     http
+//         .authorizeRequests().antMatchers("/", "/home").permitAll()
+//         .mvcMatchers("/cpanel").hasRole("ADMIN")
+//         .anyRequest().authenticated()
+//         .and()
+//         .formLogin()
+//             .loginPage("/login")       
+//             .permitAll()
+//             .and()
+//         .logout().permitAll()
+//         .and()
+//         .exceptionHandling().accessDeniedPage("/403");
+     
+// }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

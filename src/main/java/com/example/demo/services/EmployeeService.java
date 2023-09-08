@@ -5,4 +5,5 @@ import com.example.demo.services.generic.GenericService;
 
 public interface EmployeeService extends GenericService<Employee,Integer>{
     public Integer findIdByEmail(String email);
+    public String existsByEmail(String email);
 }

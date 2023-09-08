@@ -8,11 +8,14 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entities.User;
 import com.example.demo.repositories.UserRepository;
 
+
 @Service
 public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserRepository uRepo;
+
+
     @Override
     public List<User> Get() {
         return uRepo.findAll();
@@ -20,7 +23,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User Get(Integer id) {
-        return uRepo.findById(id).orElseThrow(null);
+        return uRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("user tidak ditemukan"));
     }
 
     @Override

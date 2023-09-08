@@ -12,6 +12,23 @@ import com.example.demo.repositories.EmployeeRepository;
 public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeRepository eRepo;
+
+    @Override
+    public String existsByEmail(String email) {
+        return eRepo.existsByEmail(email);
+    }
+
+    @Override
+    public Integer findIdByEmail(String email) {
+        return eRepo.findIdByEmail(email);
+    }
+
+    @Override
+    public Boolean Delete(Integer id) {
+        eRepo.deleteById(id);
+        return !eRepo.findById(id).isPresent();
+    }
+
     @Override
     public List<Employee> Get() {
         return eRepo.findAll();
@@ -28,14 +45,5 @@ public class EmployeeServiceImpl implements EmployeeService {
         return eRepo.findById(model.getEmployee_id()).isPresent();
     }
 
-    @Override
-    public Boolean Delete(Integer id) {
-        eRepo.deleteById(id);
-        return !eRepo.findById(id).isPresent();
-    }
-    
-    @Override
-    public Integer findIdByEmail(String email) {
-        return eRepo.findIdByEmail(email);
-    }
+
 }
